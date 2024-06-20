@@ -94,7 +94,7 @@
                             <includeBomSerialNumber>false</includeBomSerialNumber>
                             <includeLicenseText>false</includeLicenseText>
                             <componentVersion>2.0.0</componentVersion>
-                            <destination>build/reports</destination>
+                            <destination>traget/reports</destination>
                         </configuration>
                     </execution>
                 </executions>
