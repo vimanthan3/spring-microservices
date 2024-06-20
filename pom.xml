@@ -12,13 +12,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-            <groupId>org.cyclonedx</groupId>
-    <artifactId>cyclonedx-maven-plugin</artifactId>
-    <packaging>maven-plugin</packaging>
-    <version>1.8.1</version>
-
-
-         
     <artifactId>api-gateway</artifactId>
 
     <properties>
@@ -27,16 +20,6 @@
         <spring-cloud.version>2021.0.2</spring-cloud.version>
         <sonar.java.binaries>${project.build.directory}/classes</sonar.java.binaries>
     </properties>
-
-            <scm>
-        <connection>scm:git:git@github.com:CycloneDX/cyclonedx-maven-plugin.git</connection>
-        <url>https://github.com/CycloneDX/cyclonedx-maven-plugin.git</url>
-        <developerConnection>scm:git:git@github.com:CycloneDX/cyclonedx-maven-plugin.git</developerConnection>
-        <tag>master</tag>
-    </scm>
-
-
-         
 
     <dependencies>
              
@@ -93,30 +76,31 @@
 
     <build>
         <plugins>
-               <plugin>
+
+                 
+                 <plugin>
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
                 <version>1.8.1</version>
                 <executions>
-                    <execution>
-                        <id>make-bom</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>makeBom</goal>
-                        </goals>
-                        <configuration>
-                            <schemaVersion>1.5</schemaVersion>
-                            <outputName>bom</outputName>
-                            <outputFormat>xml</outputFormat>
-                            <includeBomSerialNumber>false</includeBomSerialNumber>
-                            <includeLicenseText>false</includeLicenseText>
-                            <componentVersion>2.0.0</componentVersion>
-                            <destination>traget/reports</destination>
-                        </configuration>
-                    </execution>
+                        <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                        <goal>makeAggregateBom</goal>
+                                </goals>
+                        </execution>
                 </executions>
-            </plugin>              
-                      
+                <configuration>
+                        <includeCompileScope>true</includeCompileScope>
+                        <includeProvidedScope>true</includeProvidedScope>
+                        <includeRuntimeScope>true</includeRuntimeScope>
+                        <includeSystemScope>true</includeSystemScope>
+                        <includeTestScope>false</includeTestScope>
+                </configuration>
+          </plugin>
+
+
+                 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
