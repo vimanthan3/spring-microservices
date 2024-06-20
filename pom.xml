@@ -93,23 +93,29 @@
 
     <build>
         <plugins>
-          <plugin>
+               <plugin>
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
                 <version>1.8.1</version>
                 <executions>
                     <execution>
-                        <id>cyclonedx-makeBom</id>
-                        <phase>package</phase>
+                        <id>make-bom</id>
+                        <phase>verify</phase>
                         <goals>
                             <goal>makeBom</goal>
                         </goals>
                         <configuration>
-                            <includeProvidedScope>false</includeProvidedScope>
+                            <schemaVersion>1.5</schemaVersion>
+                            <outputName>bom</outputName>
+                            <outputFormat>xml</outputFormat>
+                            <includeBomSerialNumber>false</includeBomSerialNumber>
+                            <includeLicenseText>false</includeLicenseText>
+                            <componentVersion>2.0.0</componentVersion>
+                            <destination>traget/reports</destination>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>                 
+            </plugin>              
                       
             <plugin>
                 <groupId>org.springframework.boot</groupId>
