@@ -95,23 +95,25 @@
             <plugin>
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
-                <version>1.7.4</version>
+                <version>1.8.1</version>
                 <executions>
                     <execution>
+                        <id>make-bom</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>makeAggregateBom</goal>
+                            <goal>makeBom</goal>
                         </goals>
+                        <configuration>
+                            <schemaVersion>1.5</schemaVersion>
+                            <outputName>bom</outputName>
+                            <outputFormat>xml</outputFormat>
+                            <includeBomSerialNumber>false</includeBomSerialNumber>
+                            <includeLicenseText>false</includeLicenseText>
+                            <componentVersion>2.0.0</componentVersion>
+                            <destination>build/reports</destination>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <schemaVersion>1.5</schemaVersion>
-                    <includeBomSerialNumber>false</includeBomSerialNumber>
-                    <includeLicenseText>false</includeLicenseText>
-                    <outputFormat>xml</outputFormat>
-                    <outputName>bom</outputName>
-                    <destination>build/reports</destination>
-                    <componentVersion>2.0.0</componentVersion>
-                </configuration>
             </plugin>
         </plugins>
     </build>
