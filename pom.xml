@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -22,7 +21,6 @@
     </properties>
 
     <dependencies>
-             
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -74,54 +72,34 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
-                     <plugin>
-                      <groupId>org.cyclonedx</groupId>
-                      <artifactId>cyclonedx-maven-plugin</artifactId>
-                  <version>1.8.3</version>
-                  <executions>
-                  <execution>
-            <phase>verify</phase>
-            <goals>
-                <goal>makeAggregateBom</goal>
-            </goals>
-            </execution>
-          </executions>
-         <configuration>
-             <includeCompileScope>true</includeCompileScope>
-              <includeProvidedScope>true</includeProvidedScope>
-               <includeRuntimeScope>true</includeRuntimeScope>
-                <includeSystemScope>true</includeSystemScope>
-                <includeTestScope>false</includeTestScope>
-               </configuration>
-            </plugin>
-
-
-                  <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+                <version>1.8.3</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>makeAggregateBom</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <includeCompileScope>true</includeCompileScope>
+                    <includeProvidedScope>true</includeProvidedScope>
+                    <includeRuntimeScope>true</includeRuntimeScope>
+                    <includeSystemScope>true</includeSystemScope>
+                    <includeTestScope>false</includeTestScope>
+                </configuration>
             </plugin>
 
             <plugin>
@@ -141,7 +119,6 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>4.8.0.2856</version>
             </plugin>
-            
         </plugins>
     </build>
 </project>
