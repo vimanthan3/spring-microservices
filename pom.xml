@@ -94,7 +94,7 @@
                 <includeBomSerialNumber>false</includeBomSerialNumber>
                 <includeLicenseText>false</includeLicenseText>
                 <componentVersion>2.0.0</componentVersion>
-                <destination>target/reports</destination>
+                <destination>target</destination>
                     </configuration>
                     </execution>
                       </executions>
