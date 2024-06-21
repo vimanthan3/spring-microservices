@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -21,6 +22,7 @@
     </properties>
 
     <dependencies>
+             
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
@@ -51,51 +53,52 @@
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
             <version>3.1.11</version>
         </dependency>
-
-
-             <dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-dependencies</artifactId>
-    <version>2023.0.2</version>
-    <type>pom</type>
-    <scope>import</scope>
-    </dependency>
-
     </dependencies>
 
-
-        
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>1.17.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
-               
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>3.1.0</version>
-        </plugin>
-       <plugin>
+                 <plugin>
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
-                <version>1.8.3</version>
+                <version>1.8.1</version>
                 <executions>
                     <execution>
+                        <id>make-bom</id>
                         <phase>verify</phase>
                         <goals>
-                            <goal>makeAggregateBom</goal>
+                            <goal>makeBom</goal>
                         </goals>
+                        <configuration>
+                            <schemaVersion>1.5</schemaVersion>
+                            <outputName>bom</outputName>
+                            <outputFormat>xml</outputFormat>
+                            <includeBomSerialNumber>false</includeBomSerialNumber>
+                            <includeLicenseText>false</includeLicenseText>
+                            <componentVersion>2.0.0</componentVersion>
+                            <destination>traget/reports</destination>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <includeCompileScope>true</includeCompileScope>
-                    <includeProvidedScope>true</includeProvidedScope>
-                    <includeRuntimeScope>true</includeRuntimeScope>
-                    <includeSystemScope>true</includeSystemScope>
-                    <includeTestScope>false</includeTestScope>
-                </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -113,9 +116,7 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>4.8.0.2856</version>
             </plugin>
-                 <build>
-    
-
+            
         </plugins>
     </build>
 </project>
