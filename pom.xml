@@ -77,10 +77,10 @@
     <build>
         <plugins>
                  <plugin>
-                   <groupId>org.cyclonedx</groupId>
-                   <artifactId>cyclonedx-maven-plugin</artifactId>
-                   <version>2.7.6</version>
-                    <executions>
+    <groupId>org.cyclonedx</groupId>
+ <artifactId>cyclonedx-maven-plugin</artifactId>
+           <version>2.7.6</version>
+    <executions>
         <execution>
             <id>make-bom</id>
             <phase>verify</phase>
@@ -95,10 +95,11 @@
                 <includeLicenseText>false</includeLicenseText>
                 <componentVersion>2.0.0</componentVersion>
                 <destination>target/reports</destination>
-               </configuration>
-              </execution>
-              </executions>
-           </plugin>
+                    </configuration>
+                    </execution>
+                      </executions>
+                   </plugin>
+
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
