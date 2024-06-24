@@ -5,6 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Parent POM -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -12,8 +13,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <!-- Project Information -->
     <artifactId>api-gateway</artifactId>
 
+    <!-- Properties -->
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -22,15 +25,17 @@
         <sonar.java.binaries>${project.build.directory}/classes</sonar.java.binaries>
     </properties>
 
+    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-            <version>4.1.4</version>
+            <version>2021.0.2</version>
         </dependency>
-        <!-- Other dependencies omitted for brevity -->
+        <!-- Add other dependencies as needed -->
     </dependencies>
 
+    <!-- Dependency Management -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -47,62 +52,72 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Add other managed dependencies as needed -->
         </dependencies>
     </dependencyManagement>
 
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.cyclonedx</groupId>
-            <artifactId>cyclonedx-maven-plugin</artifactId>
-            <version>2.7.6</version>
-            <executions>
-                <execution>
-                    <id>make-bom</id>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>makeBom</goal>
-                    </goals>
-                    <configuration>
-                        <schemaVersion>1.5</schemaVersion>
-                        <outputName>bom</outputName>
-                        <outputFormat>xml</outputFormat>
-                        <includeBomSerialNumber>false</includeBomSerialNumber>
-                        <includeLicenseText>false</includeLicenseText>
-                        <componentVersion>2.0.0</componentVersion>
-                        <destination>target</destination> <!-- Corrected typo: 'traget' to 'target' -->
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>
-            <configuration>
-                <source>11</source>
-                <target>11</target>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>3.3.1</version>
-            <configuration>
-                <excludes>
-                    <exclude>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok</artifactId>
-                    </exclude>
-                </excludes>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>4.8.0.2856</version>
-        </plugin>
-    </plugins>
-</build>
+    <!-- Build Configuration -->
+    <build>
+        <plugins>
+            <!-- CycloneDX Maven Plugin -->
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+                <version>2.7.6</version>
+                <executions>
+                    <execution>
+                        <id>make-bom</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>makeBom</goal>
+                        </goals>
+                        <configuration>
+                            <schemaVersion>1.5</schemaVersion>
+                            <outputName>bom</outputName>
+                            <outputFormat>xml</outputFormat>
+                            <includeBomSerialNumber>false</includeBomSerialNumber>
+                            <includeLicenseText>false</includeLicenseText>
+                            <componentVersion>2.0.0</componentVersion>
+                            <destination>target</destination>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot Maven Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Sonar Maven Plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.8.0.2856</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
+
